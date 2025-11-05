@@ -1,3 +1,69 @@
-[gd_scene format=3 uid="uid://c5x5gipk4jflu"]
+[gd_scene load_steps=7 format=3 uid="uid://c5x5gipk4jflu"]
+
+[ext_resource type="Script" uid="uid://dedik8w7payyh" path="res://addons/2025_11_04_gdp_point_to_point_map/scripts/gps_point_node_3d.gd" id="1_jp3si"]
+[ext_resource type="Script" uid="uid://bpt6bbydklpds" path="res://addons/2025_11_04_gdp_point_to_point_map/scripts/gps_three_points_on_map_node.gd" id="1_ukref"]
+[ext_resource type="Texture2D" uid="uid://b8gljcwy0oxt4" path="res://addons/2025_11_04_gdp_point_to_point_map/map/ukraine/GreenBorderNasa.png" id="2_nqj7w"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nqj7w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ukref"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7605"]
+albedo_texture = ExtResource("2_nqj7w")
 
 [node name="Node3D" type="Node3D"]
+
+[node name="Node" type="Node" parent="." node_paths=PackedStringArray("point_a", "point_b", "point_c")]
+script = ExtResource("1_ukref")
+point_a = NodePath("../MapCoordinateTopLeft")
+point_b = NodePath("../MapCoordinateTopRight")
+point_c = NodePath("../MapCoordinateDownLeft")
+given_real_world_distance_a_b_meter = 1.18083e+06
+ratio_game_to_real_world_meter = 751.689
+game_world_distance_a_b = 1570.9
+deduced_real_world_distance_b_c = 1.00975e+06
+game_world_distance_b_c = 1343.31
+deduced_real_world_distance_c_a = 752760.0
+game_world_distance_c_a = 1001.42
+total_distance_in_game = 3915.64
+total_distance_in_real_life = 2.94334e+06
+point_a_engine_position = Vector3(-759.81, 0, -246.691)
+point_b_engine_position = Vector3(804.461, 0, -390.876)
+point_c_engine_position = Vector3(-153.778, 0, 550.54)
+
+[node name="MapCoordinateDownLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -153.778, 0, 550.54)
+script = ExtResource("1_jp3si")
+map_longitude = 28.214
+map_latitude = 45.466
+map_altitude = 6.0
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MapCoordinateDownLeft"]
+mesh = SubResource("BoxMesh_nqj7w")
+skeleton = NodePath("../../MapCoordinateTopLeft")
+
+[node name="MapCoordinateTopRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 804.461, 0, -390.876)
+script = ExtResource("1_jp3si")
+map_longitude = 40.135
+map_latitude = 49.617
+map_altitude = 241.0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MapCoordinateTopRight"]
+mesh = SubResource("BoxMesh_nqj7w")
+skeleton = NodePath("../../MapCoordinateTopLeft")
+
+[node name="MapCoordinateTopLeft" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -759.81, 0, -246.691)
+script = ExtResource("1_jp3si")
+map_longitude = 23.618
+map_latitude = 51.508
+map_altitude = 160.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MapCoordinateTopLeft"]
+mesh = SubResource("BoxMesh_nqj7w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1920, 0, 0, 0, -5.24537e-05, 1, 0, -1200, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_ukref")
+surface_material_override/0 = SubResource("StandardMaterial3D_n7605")

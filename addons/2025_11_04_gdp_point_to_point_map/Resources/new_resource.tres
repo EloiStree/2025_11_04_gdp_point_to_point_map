@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MapGpsStruct" load_steps=2 format=3 uid="uid://dud4ff6cmfaml"]
+
+[ext_resource type="Script" uid="uid://dwe5brgwripqt" path="res://addons/2025_11_04_gdp_point_to_point_map/scripts/GpsThreePointsOnMapResource.gd" id="1_xv10s"]
+
+[resource]
+script = ExtResource("1_xv10s")
+metadata/_custom_type_script = "uid://dwe5brgwripqt"
